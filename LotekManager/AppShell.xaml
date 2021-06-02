@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:LotekManager.Views"
+       xmlns:analizer="clr-namespace:LotekManager.Views.Analizer"
+       Title="LotekManager"
+       x:Class="LotekManager.AppShell">
+
+    <!--
+        The overall app visual hierarchy is defined here, along with navigation.
+    
+        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
+    -->
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="#263238" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="#455A64"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#455A64"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="#263238"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+        <ShellContent Title="Start" ContentTemplate="{DataTemplate local:StartPage}" >
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#ionic}" Glyph="&#xf447;" >
+                </FontImageSource>
+            </ShellContent.Icon>
+        </ShellContent>
+        
+        <ShellContent Title="Analiza" Route="AnlzMenu" ContentTemplate="{DataTemplate analizer:AnlzMenu}" >
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#ionic}" Glyph="&#xf2b5;" >
+                </FontImageSource>
+            </ShellContent.Icon>
+        </ShellContent>
+        
+        <ShellContent Title="Lokalizacje" Route="Places" ContentTemplate="{DataTemplate local:PlacesPage}" >
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#ionic}" Glyph="&#xf203;" >
+                </FontImageSource>
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Title="Ustawienia" Route="Settings" ContentTemplate="{DataTemplate local:SettingsPage}" >
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#ionic}" Glyph="&#xf2f7;" >
+                </FontImageSource>
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <!--<ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />-->
+    </TabBar>
+
+    <!--
+        If you would like to navigate to this content you can do so by calling
+        await Shell.Current.GoToAsync("//LoginPage");
+    -->
+    <!--<TabBar>
+        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+    </TabBar>-->
+
+
+</Shell>

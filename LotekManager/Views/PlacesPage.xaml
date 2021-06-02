@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:LotekManager.Models"
+             x:Class="LotekManager.Views.PlacesPage"
+             BackgroundColor="#F5F5F5"
+             Title="Zapisane lokalizacje">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="Dodaj" Clicked="OnAddClicked" >
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#ionic}" Glyph="&#xf217;" >
+                </FontImageSource>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        
+        <ToolbarItem  Text="Edytuj" Clicked="OnEditClicked" >
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#ionic}" Glyph="&#xf12c;" >
+                </FontImageSource>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem  Text="Usuń" Clicked="OnDeleteClicked" >
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#ionic}" Glyph="&#xf253;" >
+                </FontImageSource>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <!--changing color displayed after list item selection-->
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView x:Name="LocationsListView"
+                ItemsSource="{Binding Locations}"
+                SelectionMode="Multiple">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="model:Location">
+                            <Label Text="{Binding Name}" 
+                                       LineBreakMode="NoWrap"
+                                       FontSize="16" TextColor="SlateGray"/>
+                            <Label Text="{Binding Adress}" 
+                            LineBreakMode="WordWrap"
+                            FontSize="14" TextColor="SlateGray"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout VerticalOptions="End" Margin="10,10,10,20" HorizontalOptions="Fill">
+                <Frame BackgroundColor="#90CAF9" VerticalOptions="Center" HorizontalOptions="FillAndExpand" HeightRequest="25">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                        <Label Text="Zobacz na mapie" FontSize="Medium" TextColor="DarkSlateGray"/>
+                        <Image BackgroundColor="Transparent">
+                            <Image.Source>
+                                <FontImageSource Glyph="&#xf10b;"
+                                     FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf##ionic}" Color="#455A64"/>
+                            </Image.Source>
+                        </Image>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Tapped="GoToMap_Tapped" />
+
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

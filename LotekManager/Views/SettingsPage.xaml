@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Ustawienia"
+             x:Class="LotekManager.Views.SettingsPage"
+             BackgroundColor="#F5F5F5">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="FontColor">DarkSlateGray</Color>
+            <Color x:Key="GeoPosColor">Gray</Color>
+            <Color x:Key="EntBackColor">#ECEFF1</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="Zapisz" Clicked="OnSave_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="15">
+            <Frame CornerRadius="5">
+                <StackLayout>
+                    <Label Text="Adres serwisu:" FontSize="Medium" TextColor="{StaticResource FontColor}"/>
+                    <Frame BackgroundColor="{StaticResource EntBackColor}" BorderColor="#78909C" Padding="10,0,10,0" CornerRadius="10" HorizontalOptions="FillAndExpand">
+                        <Entry x:Name="entryAdr" Text="" FontSize="Medium" IsSpellCheckEnabled="false" 
+                        TextColor="{StaticResource FontColor}" />
+                    </Frame>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

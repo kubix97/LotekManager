@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:model="clr-namespace:LotekManager.Models"
+             Title="Historia losowań"
+             BackgroundColor="#F5F5F5"
+             x:Class="LotekManager.Views.Analizer.HistoryPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="FontColor">Black</Color>
+            <Color x:Key="GridBorderColor">#37474F</Color>
+            <Color x:Key="CellBgrdColor">#F5F5F5</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame HasShadow="False"  BorderColor="Silver">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Wybierz datę: " VerticalOptions="Center" TextColor="{StaticResource FontColor}" FontSize="16"/>
+                    <Frame BackgroundColor="#E1F5FE" BorderColor="#78909C" Padding="10,0,10,0" CornerRadius="10" HorizontalOptions="FillAndExpand">
+                        <DatePicker x:Name="datePicker" HorizontalOptions="FillAndExpand"
+                                 DateSelected="OnDateSelected" TextColor="DarkSlateGray">
+                            <DatePicker.Format>dd'.'MM'.'yyyy</DatePicker.Format>
+                            <DatePicker.MinimumDate>
+                                <sys:DateTime x:FactoryMethod="Parse">
+                                    <x:Arguments>
+                                        <x:String>Jan 27 1957</x:String>
+                                    </x:Arguments>
+                                </sys:DateTime>
+                            </DatePicker.MinimumDate>
+                        </DatePicker>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+            
+            <Grid Margin="20,10,20,0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+                <Frame Margin="0" Padding="0" CornerRadius="0" BorderColor="{StaticResource GridBorderColor}" BackgroundColor="{StaticResource CellBgrdColor}" >
+                        <Label Text="Data" TextColor="{StaticResource FontColor}"
+                               VerticalOptions="Center" HorizontalOptions="Center"
+                               VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="14"/>
+                </Frame>
+
+                <Frame  Grid.Column="1" Padding="0" CornerRadius="0" Margin="0" BorderColor="{StaticResource GridBorderColor}" BackgroundColor="{StaticResource CellBgrdColor}" >
+                    <Label  Text="Wyniki losowania" TextColor="{StaticResource FontColor}"  HorizontalOptions="Center" FontSize="14"/>
+                </Frame>
+                
+            </Grid>
+            
+            <CollectionView x:Name ="ResoultsListView" 
+                ItemsSource="{Binding HisRecords}"
+                SelectionMode="None" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        
+                        <StackLayout>
+                            <Grid Margin="20,5,20,5" RowSpacing="0" ColumnSpacing="0"  x:DataType="model:HistoryRecord">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="3*" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <!--date values column as frame-->
+                                <Frame Margin="0" Padding="0" CornerRadius="0" BorderColor="{StaticResource GridBorderColor}" BackgroundColor="{StaticResource CellBgrdColor}" >
+                                    <Label Text="{Binding Date}" TextColor="{StaticResource FontColor}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                </Frame>
+                                   
+                                <!--balls column as frame-->
+                                <Frame Grid.Column="1" Margin="0" Padding="0" CornerRadius="0" BorderColor="{StaticResource GridBorderColor}" BackgroundColor="{StaticResource CellBgrdColor}" >
+                                    <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="CenterAndExpand">
+                                        <StackLayout.Resources>
+                                            <Style TargetType="Frame">
+                                                <Setter Property="HeightRequest" Value="30" />
+                                                <Setter Property="WidthRequest" Value="30" />
+                                                <Setter Property="Margin" Value="0" />
+                                                <Setter Property="Padding" Value="0" />
+                                                <Setter Property="BackgroundColor" Value="Gold" />
+                                                <Setter Property="CornerRadius" Value="20" />
+                                                <Setter Property="BorderColor" Value="LightSteelBlue" />
+                                                <Setter Property="HasShadow" Value="True" />
+                                            </Style>
+                                            <Style TargetType="Label">
+                                                <Setter Property="HorizontalOptions" Value="Center" />
+                                                <Setter Property="VerticalOptions" Value="Center" />
+                                                <Setter Property="VerticalTextAlignment" Value="Center" />
+                                                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                                                <Setter Property="FontAttributes" Value="Bold" />
+                                                <Setter Property="TextColor" Value="DarkSlateGray" />
+                                                <Setter Property="FontSize" Value="16"/>
+                                            </Style>
+                                        </StackLayout.Resources>
+
+                                        <Frame>
+                                            <Label Text="{Binding Vals[0]}"/>
+                                        </Frame>
+                                        <Frame>
+                                            <Label Text="{Binding Vals[1]}"/>
+                                        </Frame>
+                                        <Frame>
+                                            <Label Text="{Binding Vals[2]}"/>
+                                        </Frame>
+                                        <Frame>
+                                            <Label Text="{Binding Vals[3]}"/>
+                                        </Frame>
+                                        <Frame>
+                                            <Label Text="{Binding Vals[4]}"/>
+                                        </Frame>
+                                        <Frame>
+                                            <Label Text="{Binding Vals[5]}"/>
+                                        </Frame>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </StackLayout>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

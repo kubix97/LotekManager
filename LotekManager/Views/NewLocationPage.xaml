@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LotekManager.Views.NewLocationPage"
+             Title="Nowa lokalizacja"
+             BackgroundColor="#F5F5F5">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="FontColor">DarkSlateGray</Color>
+            <Color x:Key="GeoPosColor">Gray</Color>
+            <Color x:Key="EntBackColor">#ECEFF1</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Text="Nazwa:" FontSize="Medium" TextColor="{StaticResource FontColor}"/>
+            <Frame BackgroundColor="{StaticResource EntBackColor}" HasShadow="False" BorderColor="#78909C" Padding="10,0,10,0" CornerRadius="10" HorizontalOptions="FillAndExpand">
+                <Entry x:Name="entryName" Text="" FontSize="Medium" IsSpellCheckEnabled="false" TextColor="{StaticResource FontColor}"/>
+            </Frame>
+            <Label Text="Adres:" FontSize="Medium" TextColor="{StaticResource FontColor}"/>
+            <Frame BackgroundColor="{StaticResource EntBackColor}" HasShadow="False" BorderColor="#78909C" Padding="10,0,10,0" CornerRadius="10" HorizontalOptions="FillAndExpand">
+                <Entry x:Name="entryAdress" FontSize="Medium" IsSpellCheckEnabled="false" TextColor="{StaticResource FontColor}"/>
+            </Frame>
+            <Grid Margin="3,15,3,5" RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Szerokość:" FontSize="Medium" TextColor="{StaticResource FontColor}"/>
+                <Label x:Name="lblLatitude" FontSize="Medium" Grid.Column="1" TextColor="{StaticResource FontColor}"/>
+                <Label Text="Długość:" FontSize="Medium" Grid.Row="1" TextColor="{StaticResource FontColor}"/>
+                <Label x:Name="lblLongitude" FontSize="Medium" Grid.Row="1" Grid.Column="1" TextColor="{StaticResource FontColor}"/>
+            </Grid>
+            <StackLayout Orientation="Horizontal" Margin="5,25,5,15" VerticalOptions="End">
+                <Button Text="Zapisz" HorizontalOptions="FillAndExpand" Clicked="SaveBtn_Clicked" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource FontColor}"/>
+                <Button Text="Anuluj" HorizontalOptions="FillAndExpand" Clicked="CancelBtn_Clicked" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource FontColor}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

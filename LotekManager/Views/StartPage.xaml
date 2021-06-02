@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LotekManager.Views.StartPage"
+             Title="Start"
+             BackgroundColor="#F5F5F5">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="Odśwież" Clicked="OnRefresh_Clicked" >
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#ionic}" Glyph="&#xf21c;" >
+                </FontImageSource>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid Margin="20,20,20,20" RowSpacing="10" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            
+            <Frame HasShadow="True"  BorderColor="Silver"  CornerRadius="15" Padding="5">
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Image Source="Lottery_image.png" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"></Image>
+                    <StackLayout AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent">
+                        <StackLayout Margin="10">
+                            <Label Text="Witaj"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Start"
+                                   TextColor="SlateGray"/>
+                            <Label Text="w" Margin="5"
+                                FontSize="18"
+                                HorizontalOptions="Center" TextColor="SlateGray" />
+                            <Label Text="Lotek Manager"
+                                FontSize="24" FontAttributes="Italic, Bold"  
+                                TextColor="DarkSlateGray"
+                                HorizontalOptions="Center" />
+                        </StackLayout>
+                    </StackLayout>
+                </AbsoluteLayout>
+            </Frame>
+            <Frame Grid.Row="1"
+                   HasShadow="True"  BorderColor="Silver" CornerRadius="15">
+                <StackLayout >
+                    <Label
+                        Text="Wyniki ostatniego losowania:"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start" TextColor="SlateGray"/>
+                    <Label x:Name="lblValid" Text="Nieaktualne - odśwież dane"
+                           FontSize="12" HorizontalOptions="Center"
+                           Padding="0,5,0,0" TextColor="Red"/>
+                    <Label x:Name="lblDate"
+                        FontSize="18"
+                        HorizontalOptions="Center" 
+                        Padding="0,15,0,0" TextColor="SlateGray"/>
+
+                    <!--stack to contain balls-->
+                    <StackLayout x:Name="StlBalls" Padding="5,30,5,0" Orientation="Horizontal"
+                                 HorizontalOptions="Center" VerticalOptions="Center"
+                                 BindableLayout.ItemsSource="{Binding sBallValues}">
+                        
+                        <StackLayout.Resources>
+                            <Style TargetType="Frame">
+                                <Setter Property="HeightRequest" Value="40" />
+                                <Setter Property="WidthRequest" Value="40" />
+                                <Setter Property="Margin" Value="0" />
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="BackgroundColor" Value="Gold" />
+                                <Setter Property="CornerRadius" Value="20" />
+                                <Setter Property="BorderColor" Value="LightSteelBlue" />
+                                <Setter Property="HasShadow" Value="True" />
+                            </Style>
+                            <Style TargetType="Label">
+                                <Setter Property="HorizontalOptions" Value="Center" />
+                                <Setter Property="VerticalOptions" Value="Center" />
+                                <Setter Property="VerticalTextAlignment" Value="Center" />
+                                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                                <Setter Property="FontAttributes" Value="Bold" />
+                                <Setter Property="TextColor" Value="DarkSlateGray" />
+                                <Setter Property="FontSize" Value="Medium"/>
+                            </Style>
+                        </StackLayout.Resources>
+                        
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame>
+                                    <Label Text="{Binding}"/>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                        
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

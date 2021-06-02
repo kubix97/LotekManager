@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LotekManager.Views.Analizer.CheckNumsPage"
+             BackgroundColor="#F5F5F5"
+             Title="Sprawdź swoje liczby">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame Margin="15,15,15,15" CornerRadius="10">
+                <StackLayout>
+                    <Label Text="Podaj liczby:" FontSize="16" TextColor="SlateGray"/>
+                    <StackLayout x:Name="stlEntries" Orientation="Horizontal" Margin="5" HorizontalOptions="CenterAndExpand" >
+                        <StackLayout.Resources>
+                            <Style TargetType="Frame">
+                                <Setter Property="HeightRequest" Value="50" />
+                                <Setter Property="WidthRequest" Value="50" />
+                                <Setter Property="Margin" Value="0" />
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="BackgroundColor" Value="#FFEE58" />
+                                <Setter Property="CornerRadius" Value="2" />
+                                <Setter Property="BorderColor" Value="LightSteelBlue" />
+                                <Setter Property="HasShadow" Value="True" />
+                            </Style>
+                            <Style TargetType="Entry">
+                                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                                <Setter Property="VerticalTextAlignment" Value="Center" />
+                                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                                <Setter Property="FontAttributes" Value="Bold" />
+                                <Setter Property="TextColor" Value="DarkSlateGray" />
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="Keyboard" Value="Numeric"/>
+                                <Setter Property="MaxLength" Value="2"/>
+                            </Style>
+                        </StackLayout.Resources>
+                       
+                        <Frame>
+                            <Entry x:Name="ent1"  Unfocused="Entry_Unfocused" />
+                        </Frame>
+                        <Frame>
+                            <Entry x:Name="ent2"  Unfocused="Entry_Unfocused" />
+                        </Frame>
+                        <Frame>
+                            <Entry x:Name="ent3"  Unfocused="Entry_Unfocused"/>
+                        </Frame>
+                        <Frame>
+                            <Entry x:Name="ent4"  Unfocused="Entry_Unfocused"/>
+                        </Frame>
+                        <Frame>
+                            <Entry x:Name="ent5"  Unfocused="Entry_Unfocused"/>
+                        </Frame>
+                        <Frame>
+                            <Entry x:Name="ent6"  Unfocused="Entry_Unfocused"/>
+                        </Frame>
+                    </StackLayout>
+                    <Label  x:Name="lblErrorMsg" Text="Wprowadzona liczba jest nieprawidłowa!" TextColor="Red" IsVisible="{Binding ErrValidation}"/>
+                    <Button Text="Sprawdź dla ostatnich 60 dni*" Clicked="SrchButton_Clicked"
+                            HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="10"/>
+                    <Label Text="* 60 dni to maksymalny czas na odebranie nagrody" FontSize="Small" TextColor="SlateGray"/>
+                </StackLayout>
+            </Frame>
+            <Frame Margin="15,15,15,15" CornerRadius="10">
+                <StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="6*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Grid.Resources>
+                            <Style TargetType="Label">
+                                <Setter Property="TextColor" Value="SlateGray"/>
+                            </Style>
+                        </Grid.Resources>
+                        
+                        <Label Text="Trafiono:" FontAttributes="Bold"/>
+                        <Label Text="Trójka" Grid.Row="1"/>
+                        <Label Text="Czwórka" Grid.Row="2"/>
+                        <Label Text="Piątka" Grid.Row="3"/>
+                        <Label Text="Szóstka" Grid.Row="4"/>
+
+                        <Label Text="Razy:" Grid.Column="1" FontAttributes="Bold"/>
+                        <Label x:Name="lblTm3" Text="0" Grid.Column="1" Grid.Row="1" HorizontalTextAlignment="Center"/>
+                        <Label x:Name="lblTm4" Text="0" Grid.Column="1" Grid.Row="2" HorizontalTextAlignment="Center"/>
+                        <Label x:Name="lblTm5" Text="0" Grid.Column="1" Grid.Row="3" HorizontalTextAlignment="Center"/>
+                        <Label x:Name="lblTm6" Text="0" Grid.Column="1" Grid.Row="4" HorizontalTextAlignment="Center"/>
+
+                        <Label Text="Daty:" Grid.Column="2" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label x:Name="lblDt3" Text="" Grid.Column="2" Grid.Row="1" HorizontalTextAlignment="Center"/>
+                        <Label x:Name="lblDt4" Text="" Grid.Column="2" Grid.Row="2" HorizontalTextAlignment="Center"/>
+                        <Label x:Name="lblDt5" Text="" Grid.Column="2" Grid.Row="3" HorizontalTextAlignment="Center"/>
+                        <Label x:Name="lblDt6" Text="" Grid.Column="2" Grid.Row="4" HorizontalTextAlignment="Center"/>
+                    </Grid>
+                    <Label x:Name="lblSadInfo" Text="Niestety nic nie wygrałeś :(" TextColor="Red" IsVisible="False" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="LotekManager.Views.MapPage"
+             Title="Mapa lokalizacji">
+    <ContentPage.Content>
+        <maps:Map x:Name="map" 
+                  IsShowingUser="true">
+            <x:Arguments>
+                <maps:MapSpan>
+                    <x:Arguments>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>52.38574551767959</x:Double>
+                                <x:Double>19.36505485926635</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                        <x:Double>7.5</x:Double>
+                        <x:Double>8</x:Double>
+                    </x:Arguments>
+                </maps:MapSpan>
+            </x:Arguments>
+        </maps:Map>
+    </ContentPage.Content>
+</ContentPage>
