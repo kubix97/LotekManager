@@ -35,5 +35,22 @@
 	</array>
   <key>NSLocationWhenInUseUsageDescription</key>
   <string>Wymagane tylko do zapisu lokalizacji koloktury.</string>
+  <key>NSAppTransportSecurity</key>
+  <dict>
+    <key>NSExceptionDomains</key>
+    <dict>
+      <key>192.168.0.39</key>
+      <dict>
+        <key>NSExceptionMinimumTLSVersion</key>
+        <string>TLSv1.0</string>
+        <key>NSExceptionRequiresForwardSecrecy</key>
+        <false/>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+      </dict>
+    </dict>
+  </dict>
 </dict>
 </plist>
