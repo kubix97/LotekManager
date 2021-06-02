@@ -68,7 +68,47 @@ namespace LotekManager.Views.Analizer
 						idx++;
 					}
 				}
+			}
+			// if no error previously
+			if( ErrValidation == false )
+			{
+				//check if number has been inserted previously
+				foreach( Frame f in stlEntries.Children )
+				{
+					System.Diagnostics.Debug.WriteLine($"DEBUG {((Entry)f.Content).Text}");
+					string strTemp = ((Entry)f.Content).Text;
+					if( strTemp == null || strTemp.Length == 0 ){
+						//nothing to check - go on
+						continue;
+					}
 
+					if( f.Content != sender && ((Entry)f.Content).Text.Equals(text) )
+					{
+						// validation failed
+						((Entry)sender).TextColor = Color.Red;
+						ErrValidation = true;
+						((Entry)sender).Focus();
+						break;
+					}
+					else
+					{
+						// validation passed
+						((Entry)sender).TextColor = Color.DarkSlateGray;
+						ErrValidation = false;
+						int idx = 0;
+						foreach( Frame frm in stlEntries.Children )
+						{
+							if( frm.Content == sender )
+							{
+								EntriesVals[idx] = number;
+								break;
+							}
+							else{
+								idx++;
+							}
+						}
+					}
+				}
 			}
 		}
 
